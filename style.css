@@ -55,28 +55,6 @@ h1 {
     transform: rotateY(180deg);
 }
 
-.intro {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.button {
-    font-weight: 900;
-    background: #F39C12;
-    color: #17202A;
-    display: inline-block;
-    font-size: 1.25em;
-    margin: 20px;
-    padding: 10px 0px;
-    text-align: center;
-    width: 200px;
-    text-decoration: none;
-    border: 3px solid #17202A;
-    border-radius: 50px;
-    z-index: 100;
-}
-
 #frente,
 #dorso {
     display: block;

@@ -10,6 +10,11 @@ let primeraCarta, segundaCarta, primeraCartaElegida, segundaCartaElegida;
 let tiempo = 0;
 let cartasIguales = 0;
 
+function inicializar() {
+  mezclarCartas();
+  cards.forEach(card => card.addEventListener('click', voltearCarta));
+  temporizador();
+}
 
 function voltearCarta () {
   if (bloquearTablero) return;
@@ -38,6 +43,7 @@ function cartasCoinciden(primeraCartaElegida, segundaCartaElegida) {
 function desactivarCartas() {
   primeraCarta.removeEventListener('click', voltearCarta);
   segundaCarta.removeEventListener('click', voltearCarta);
+  bloquearTablero = true;
 
   cartasIguales++;
 
@@ -63,7 +69,7 @@ function noVoltearCartas() {
   }, 1000)
 }
 
-(function mezclarCartas () {
+function mezclarCartas () {
   const $dorso = document.querySelectorAll("#dorso");
 
   const cardArray = [
@@ -98,50 +104,18 @@ function noVoltearCartas() {
     {
       name: 'vegeta',
       img: 'img/vegeta.png'
-    },
-    {
-      name: 'cell',
-      img: 'img/cell.png'
-    },
-    {
-      name: 'gohan',
-      img: 'img/gohan.png'
-    },
-    {
-      name: 'goku',
-      img: 'img/goku.png'
-    },
-    {
-      name: 'gotenks',
-      img: 'img/gotenks.png'
-    },
-    {
-      name: 'majinboo',
-      img: 'img/majinboo.png'
-    },
-    {
-      name: 'piccolo',
-      img: 'img/piccolo.png'
-    },
-    {
-      name: 'saibaman',
-      img: 'img/saibaman.png'
-    },
-    {
-      name: 'vegeta',
-      img: 'img/vegeta.png'
     }
   ]
 
-  cardArray.sort(() => 0.5 - Math.random());
+  const cartas = cardArray.concat(cardArray);
 
-  for(let i=0; i < cardArray.length;i++){
-    $dorso[i].src = cardArray[i].img;
-    $dorso[i].name = cardArray[i].name;
+  cartas.sort(() => 0.5 - Math.random());
+
+  for(let i=0; i < cartas.length;i++){
+    $dorso[i].src = cartas[i].img;
+    $dorso[i].name = cartas[i].name;
   }
-
-  temporizador();
-})();
+};
 
 function reiniciarTablero() {
   cartaInvertida = false;
@@ -167,4 +141,4 @@ function finDelJuego () {
   }
 }
 
-cards.forEach(card => card.addEventListener('click', voltearCarta));
+inicializar();
